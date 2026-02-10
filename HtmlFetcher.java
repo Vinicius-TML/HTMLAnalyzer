@@ -2,6 +2,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe responsável por obter o conteúdo HTML de uma URL.
@@ -13,8 +15,8 @@ public class HtmlFetcher {
      * @return Conteúdo HTML como String.
      * @throws UrlConnectionException Se a conexão falhar.
      */
-    public String fetchContent(String urlString) throws UrlConnectionException {
-    StringBuilder content = new StringBuilder();
+    public List<String> fetchContent(String urlString) throws UrlConnectionException {
+        List<String> lines = new ArrayList<>();
     
     try {
         URL url = new URL(urlString);
@@ -25,13 +27,16 @@ public class HtmlFetcher {
                 new InputStreamReader(connection.getInputStream()))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                content.append(line).append("\n");
+                String trimmed = line.trim();
+                if (!trimmed.isEmpty()) {
+                    lines.add(trimmed);
+                }
             }
         }
     } catch (Exception e) {
         throw new UrlConnectionException("URL connection error", e);
     }
     
-    return content.toString();
+    return lines;
     }
 }
