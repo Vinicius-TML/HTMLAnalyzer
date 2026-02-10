@@ -27,8 +27,6 @@ public class HtmlFetcher {
             while ((line = reader.readLine()) != null) {
                 content.append(line).append("\n");
             }
-        } finally {
-            connection.disconnect();
         }
     } catch (Exception e) {
         throw new UrlConnectionException("URL connection error", e);

@@ -24,8 +24,6 @@ public class HtmlAnalyzerFacade {
      */
     
     public String analyzeHtml(String url) throws UrlConnectionException, MalformedHtmlException {
-        if (url.isEmpty()){
-        }
         String htmlContent = fetcher.fetchContent(url);
 
         List<String> lines = preprocessHtml(htmlContent);
