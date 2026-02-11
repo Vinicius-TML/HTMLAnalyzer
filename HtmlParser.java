@@ -1,5 +1,8 @@
 /**
- * Classe responsável por varrer o HTML e encontrar o texto mais profundo.
+ * Varre as linhas do HTML para encontrar o texto no nível de maior profundidade.
+ * A profundidade é determinada pelo número de tags de abertura ainda não fechadas
+ * no momento em que a linha de texto é encontrada. Se dois trechos estiverem no
+ * mesmo nível máximo, o primeiro encontrado é preservado.
  */
 public class HtmlParser implements HtmlLineHandler {
     private int currentDepth = 0;
