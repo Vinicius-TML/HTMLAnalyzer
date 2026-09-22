@@ -32,6 +32,10 @@ public class HtmlAnalyzerFacade {
                 handler.handle(line);
             }
         }
+        
+        if (!lines.isEmpty()) {
+            throw new MalformedHtmlException("malformed HTML");
+        } 
 
         String result = parser.getDeepestText();
         if (result.isEmpty()) {
